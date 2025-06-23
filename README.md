@@ -1,5 +1,5 @@
 @echo off
-ping -n 3 127.0.0.1 >nul
+rem ping -n 3 127.0.0.1 >nul -- Removido para execução mais rápida se a performance for crucial
 
 taskkill /f /im cheatengine.exe >nul 2>&1
 taskkill /f /im cheatengine-x86_64.exe >nul 2>&1
@@ -48,7 +48,7 @@ del /f /q "%TEMP%\*.log" >nul 2>&1
 for /d %%d in ("%TEMP%\*cheat*") do rmdir /s /q "%%d" >nul 2>&1
 for /d %%d in ("%TEMP%\*engine*") do rmdir /s /q "%%d" >nul 2>&1
 del /f /q "%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Cache\*cheat*" >nul 2>&1
-del /f /q "%LOCALAPDATA%\Google\Chrome\User Data\Default\Cache\*cheat*" >nul 2>&1
+del /f /q "%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache\*cheat*" >nul 2>&1
 del /f /q "%APPDATA%\Mozilla\Firefox\Profiles\*\cache2\*cheat*" >nul 2>&1
 del /f /q "%LOCALAPPDATA%\Microsoft\Windows\Explorer\IconCache*.db" >nul 2>&1
 ie4uinit.exe -show >nul 2>&1
@@ -200,7 +200,5 @@ Set-Service -Name 'dmwappushservice' -StartupType Disabled; ^
 wevtutil enum-logs | ForEach-Object { if ($_ -match 'Diagtrack|Telemetry|Trace|ETW|WMI|Sensors|Location|Diagnostics') { try { wevtutil cl $_ } catch {} }}; ^
 Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Telemetry\Fjep -ErrorAction SilentlyContinue | Remove-Item -ErrorAction SilentlyContinue; ^
 Get-ItemProperty HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -ErrorAction SilentlyContinue | Remove-Item -ErrorAction SilentlyContinue"
-
-:: Master File Table (MFT) records / NTFS ADS are beyond batch script capabilities for targeted deletion.
 
 exit
